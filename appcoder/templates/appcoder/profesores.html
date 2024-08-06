@@ -1,12 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "appcoder/base.html"%}
+
+{% block titulo %} Coderhouse | profesores {% endblock %}
+
+{% block contenidoQueCambia %}
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Centrar Texto</title>
+    <style>
+        h1 {
+            text-align: center;
+        }
+    </style>
 </head>
-<body style="background-color: green">
-    <h1>Visualizacion de Profesores</h1>
-    
+<body>
+    <h1>Profesores Inscritos </h1>
 </body>
 </html>
+
+{%  for profesor in profesores %}
+
+{{profesor.nombre}} - {{profesor.apellido}} - {{profesor.email}} - {{profesor.profesion}}
+
+{% endfor %}
+
+{% endblock  %}

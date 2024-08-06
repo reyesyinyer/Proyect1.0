@@ -1,11 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "appcoder/base.html"%}
+
+{% block titulo %} Coderhouse | Entregables {% endblock %}
+
+{% block contenidoQueCambia %}
+
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Centrar Texto</title>
+    <style>
+        h1 {
+            text-align: center;
+        }
+    </style>
 </head>
-<body style="background-color: red">
-    <h1>Visualizacion de Entregables</h1>
+<body>
+    <h1>Aca visualizamos los Entregables</h1>
 </body>
 </html>
+
+
+{%  for entregable in entregables %}
+
+{{entregable.nombre}} - {{entregable.fecha_de_entrega}} - {{entregable.entregado}}
+
+{% endfor %}
+
+{% endblock  %}

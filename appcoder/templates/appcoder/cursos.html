@@ -1,6 +1,6 @@
 {% extends "appcoder/base.html"%}
 
-{% block titulo %} Coderhouse | estudiantes {% endblock %}
+{% block titulo %} Coderhouse | cursos {% endblock %}
 
 {% block contenidoQueCambia %}
 
@@ -14,13 +14,14 @@
     </style>
 </head>
 <body>
-    <h1>Aca visualizamos los Estudiantes </h1>
+    <h1>Aca visualizamos los cursos registrados</h1>
 </body>
 </html>
 
-{%  for estudiante in estudiantes %}
 
-{{estudiante.nombre}} - {{estudiante.apellido}} - {{estudiante.email}}
+{%  for curso in cursos %}
+
+{{curso.nombre}} - {{curso.comision}}
 
 {% endfor %}
 
