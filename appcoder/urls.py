@@ -15,6 +15,9 @@ urlpatterns = [path("", views.inicio, name="inicio"),
     path("formularios_entregables", views.formularioentregables, name="formularioentregables"),
     path("buscarcomision/", views.buscarcomision, name="Buscarcomision"),
     path("buscar/", views.buscar),
+    path("leerprofesores/", views.leerProfesores, name="LeerProfesores"),
+    path("eliminarProfesor/<profesor_nombre>", views.eliminarProfesor, name="EliminarProfesores"),
+    path("editarProfesor/<profesor_nombre>/", views.editarProfesor, name="EditarProfesores"),
     
     
 ]

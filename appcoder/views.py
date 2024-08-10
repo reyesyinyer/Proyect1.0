@@ -60,15 +60,16 @@ def formulariocurso(request):
             informacion = formulario.cleaned_data
             curso = Curso(nombre=informacion["nombre"], comision=informacion["comision"])
             curso.save()
-            return render(request, "appcoder/cursos.html")
+            return render(request, "appcoder/cursos.html") 
     else:
         formulario = MiFormulario()
         
-    return render(request, "appcoder/formulariocurso.html", {"formulario": formulario})
+    return render(request, "appcoder/formulariocurso.html", {"formulario": formulario}) 
 
 def formularioprofesores(request):
-    if request.method == "POST":
+    if request.method == 'POST':
         formulario = MiFormularioProfesores(request.POST)
+        
         
         
         if formulario.is_valid():
@@ -80,6 +81,54 @@ def formularioprofesores(request):
         formulario = MiFormularioProfesores()
         
     return render(request, "appcoder/formularioprofesores.html", {"formulario": formulario})
+
+def leerProfesores(request):
+    profesores = Profesor.objects.all()
+    contexto = {"profesores":profesores}
+    
+    return render(request, "appcoder/leerprofesores.html", contexto)
+
+def editarProfesor(request, profesor_nombre):
+    
+    profesor = Profesor.objects.get(nombre = profesor_nombre)
+    
+    if request.method == 'POST':
+        
+        miFormulario = MiFormularioProfesores(request.POST)
+        
+        print(miFormulario)
+        
+        if miFormulario.is_valid:
+            
+            informacion = miFormulario.cleaned_data
+            
+            profesor.nombre = informacion['nombre']
+            profesor.apellido = informacion['apellido']
+            profesor.email = informacion['email']
+            profesor.profesion = informacion['profesion']
+            
+            profesor.save()
+            
+            return render(request, "appcoder/inicio.html")
+    else:
+        miFormulario = MiFormularioProfesores(initial={'nombre':profesor.nombre, 'apellido':profesor.apellido, 'email':profesor.email, 'profesion':profesor.profesion})
+        
+    return render(request, "appcoder/editarProfesor.html", {'miFormulario':miFormulario, 'profesor_nombre':profesor_nombre})
+
+def eliminarProfesor(request, profesor_nombre):
+    
+    profesor = Profesor.objects.get(nombre=profesor_nombre)
+    
+    profesor.delete()
+    
+    profesores = Profesor.objects.all()
+    
+    contexto = {"profesores":profesores}
+    
+    return render(request, "appcoder/leerprofesores.html", contexto)
+    
+
+
 
 def formularioentregables(request):
     if request.method == "POST":
