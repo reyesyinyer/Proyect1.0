@@ -14,7 +14,7 @@
         
         <a href= "{% url 'EliminarProfesores' p.nombre %}"> Eliminar </a>
         
-        <a href= "{% url 'EditarProfesores' p.nombre %}"> Editar </a>
+        <a href= "{% url 'EditarProfesores' p.id %}"> Editar </a>
         
         </button>
 
@@ -22,7 +22,7 @@
 
     <button>
 
-    <a href= "{% url 'profesores'  %}"> Agregar Otro Profesor </a>
+    <a href= "{% url 'formularioprofesores'  %}"> Agregar Otro Profesor </a>
 
 </button>
 

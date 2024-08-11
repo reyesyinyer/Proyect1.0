@@ -1,0 +1,32 @@
+{% extends "appcoder/base.html"%}
+
+{% load static %}
+
+{% block contenidoQueCambia %}
+
+<h1>Borrar datos del Curso</h1>
+
+{%block main%}
+
+<form action="" method="POST">
+        
+    {% csrf_token %}
+
+        <p>Estas seguro de eliminar el curso : {{curso.nombre}} </p>
+
+        <input type="submit" value="Borrar">
+
+        <button>
+
+            <a href= "{% url 'ListarCursos'  %}"> Volver </a>
+        
+        </button>
+
+</form>
+
+
+{%endblock main%}
+
+
+
+{% endblock contenidoQueCambia %}

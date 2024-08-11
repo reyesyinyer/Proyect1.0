@@ -5,7 +5,14 @@ from appcoder.forms import MiFormulario
 from appcoder.forms import MiFormularioEstudiantes
 from appcoder.forms import MiFormularioProfesores
 from appcoder.forms import MiFormularioEntregables
+from django.views.generic import ListView 
+from django.views.generic.detail import DetailView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
 import requests
+
+
+
 
 def inicio(request):
     return render(request, "appcoder/inicio.html")
@@ -88,9 +95,9 @@ def leerProfesores(request):
     
     return render(request, "appcoder/leerprofesores.html", contexto)
 
-def editarProfesor(request, profesor_nombre):
+def editarProfesor(request, profesor_id):
     
-    profesor = Profesor.objects.get(nombre = profesor_nombre)
+    profesor = Profesor.objects.get(id =profesor_id)
     
     if request.method == 'POST':
         
@@ -98,7 +105,7 @@ def editarProfesor(request, profesor_nombre):
         
         print(miFormulario)
         
-        if miFormulario.is_valid:
+        if miFormulario.is_valid():
             
             informacion = miFormulario.cleaned_data
             
@@ -111,15 +118,15 @@ def editarProfesor(request, profesor_nombre):
             
             return render(request, "appcoder/inicio.html")
     else:
-        miFormulario = MiFormularioProfesores(initial={'nombre':profesor.nombre, 'apellido':profesor.apellido, 'email':profesor.email, 'profesion':profesor.profesion})
+        miFormulario = MiFormularioProfesores(initial={"nombre":profesor.nombre, "apellido":profesor.apellido, "email":profesor.email, "profesion":profesor.profesion})
         
-    return render(request, "appcoder/editarProfesor.html", {'miFormulario':miFormulario, 'profesor_nombre':profesor_nombre})
+    return render(request, "appcoder/editarProfesor.html", {"miFormulario":miFormulario, "profesor_id":profesor_id})
 
 def eliminarProfesor(request, profesor_nombre):
     
     profesor = Profesor.objects.get(nombre=profesor_nombre)
     
-    profesor.delete()
+    profesor.delete() ##esto sirve para borrar
     
     profesores = Profesor.objects.all()
     
@@ -165,5 +172,32 @@ def buscar(request):
     
     
     return HttpResponse(respuesta)
+
+
+
+class CursoListView(ListView):
+    model = Curso
+    context_object_name = "cursos"
+    template_name = "appcoder/listar.html"
     
+class CursoCreateView(CreateView):
+    model = Curso
+    template_name = "appcoder/crear.html"
+    success_url = reverse_lazy('ListarCursos')
+    fields = ['nombre','comision']
     
+class CursoUpdateView(UpdateView):
+    model = Curso
+    template_name = "appcoder/actualizar.html"
+    success_url = reverse_lazy('ListarCursos')
+    fields = ['nombre','comision']
+    
+class CursoDeleteView(DeleteView):
+    model = Curso
+    template_name = "appcoder/borrar.html"
+    success_url = reverse_lazy('ListarCursos')
+    fields = ['nombre','comision']
+    
+class CursoDetailView(DetailView):
+    model = Curso
+    template_name = "appcoder/ver.html"

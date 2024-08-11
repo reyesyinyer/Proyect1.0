@@ -35,3 +35,4 @@ class Entregable(models.Model):
     
     def __str__(self):
         return f"Nombre del Entregable: {self.nombre} -Fecha del entregable: {self.fecha_de_entrega} - Entregado: {self.entregado} "
+    

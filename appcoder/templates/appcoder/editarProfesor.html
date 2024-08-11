@@ -1,18 +1,11 @@
 
 <body>
-    {% for p in profesores %}
-        
-        <li>{{p}}</li>
-        
-        <button>
-
-            
-            <a href= "{% url 'EditarProfesores' p.nombre %}"> Editar </a>
-        
-        </button>
     
-    {%endfor%}
-
+    <form action="" method="POST">{% csrf_token %}
+        {{miFormulario}}
+        <input type="submit" value="Modificar Profesor">
+    </form>
+    
     <button>
 
         <a href= "{% url 'profesores'  %}"> Agregar Otro Profesor </a>
