@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'appcoder',
+    'usuarios'
 ]
 
 MIDDLEWARE = [
@@ -106,6 +107,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+
+LOGIN_URL = "/usuarios/login/"
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/

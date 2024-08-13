@@ -9,6 +9,8 @@ from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin 
+
 import requests
 
 
@@ -133,9 +135,6 @@ def eliminarProfesor(request, profesor_nombre):
     contexto = {"profesores":profesores}
     
     return render(request, "appcoder/leerprofesores.html", contexto)
-    
-
-
 
 def formularioentregables(request):
     if request.method == "POST":
@@ -151,8 +150,6 @@ def formularioentregables(request):
         formulario = MiFormularioEntregables()
         
     return render(request, "appcoder/formularioentregables.html", {"formulario": formulario})
-
-
 
 def buscarcomision(request):
     return render(request, "appcoder/buscarcomision.html")
@@ -173,9 +170,7 @@ def buscar(request):
     
     return HttpResponse(respuesta)
 
-
-
-class CursoListView(ListView):
+class CursoListView(LoginRequiredMixin, ListView):
     model = Curso
     context_object_name = "cursos"
     template_name = "appcoder/listar.html"
@@ -201,3 +196,9 @@ class CursoDeleteView(DeleteView):
 class CursoDetailView(DetailView):
     model = Curso
     template_name = "appcoder/ver.html"
+    
+
+
+
+
+

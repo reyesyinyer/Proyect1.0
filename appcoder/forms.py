@@ -2,6 +2,7 @@ from django.forms import forms
 from django import forms
 
 
+
 class MiFormulario(forms.Form):
     nombre = forms.CharField()
     comision = forms.IntegerField()
@@ -21,4 +22,7 @@ class MiFormularioEntregables(forms.Form):
     nombre = forms.CharField()
     fecha_de_entrega = forms.DateField()
     entregado = forms.BooleanField()
+    
+
+    
     

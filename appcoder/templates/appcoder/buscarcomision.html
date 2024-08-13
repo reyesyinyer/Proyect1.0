@@ -1,7 +1,23 @@
+{% extends "appcoder/base.html"%}
+
+{% load static %}
+
+{% block contenidoQueCambia %}
+
+<h1>Buscar Cursos</h1>
+
 <form action= "/appcoder/buscar/" method="GET">
     
     <input type="number" name="comision">
 
     <input type="submit" value="Buscar">
 
+    <button>
+
+        <a href= "{% url 'cursos'  %}"> Volver </a>
+    
+    </button>
+
 </form>
+
+{% endblock contenidoQueCambia %}

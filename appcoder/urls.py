@@ -1,8 +1,7 @@
 from django.urls import path
-
 from appcoder.views import *
-
 from appcoder import views
+
 
 urlpatterns = [path("", views.inicio, name="inicio"),
     path("vista_cursos/", views.cursos, name="cursos"),
