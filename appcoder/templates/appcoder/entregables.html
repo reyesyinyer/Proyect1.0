@@ -15,15 +15,35 @@
     </style>
 </head>
 <body>
-    <h1>Aca visualizamos los Entregables</h1>
+    <h1>Aca visualizamos las notas de los Entregables</h1>
 </body>
 </html>
 
 
-{%  for entregable in entregables %}
+<table style="width:100%; border: 2px solid #2196F3; background-color: #f5f5f5; color: #333; text-align: center; border-radius: 10px;">
+    <thead style="background-color: #2196F3; color: white; border-radius: 10px;">
+        <tr>
+            <th style="padding: 10px;">Nombre del Entregable</th>
+            <th style="padding: 10px;">Fecha de Entrega</th>
+            <th style="padding: 10px;">Entregado</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for entregable in entregables %}
+        <tr style="border-bottom: 1px solid #ddd;">
+            <td style="padding: 10px;">{{entregable.nombre}}</td>
+            <td style="padding: 10px;">{{entregable.fecha_de_entrega}}</td>
+            <td style="padding: 10px;">
+                {% if entregable.entregado %}
+                    <span style="color: green;">Sí</span>
+                {% else %}
+                    <span style="color: red;">No</span>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
 
-{{entregable.nombre}} - {{entregable.fecha_de_entrega}} - {{entregable.entregado}}
 
-{% endfor %}
-
-{% endblock  %}
+{% endblock  %} 

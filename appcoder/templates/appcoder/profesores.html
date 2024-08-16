@@ -13,14 +13,32 @@
     </style>
 </head>
 <body>
-    <h1>Profesores Inscritos </h1>
+    <h1>Profesores Tutores </h1>
 </body>
 </html>
 
-{%  for profesor in profesores %}
+<div class="table-responsive">
+    <table class="table table-striped table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Email</th>
+                <th>Profesión</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for profesor in profesores %}
+            <tr>
+                <td>{{ profesor.nombre }}</td>
+                <td>{{ profesor.apellido }}</td>
+                <td>{{ profesor.email }}</td>
+                <td>{{ profesor.profesion }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
 
-{{profesor.nombre}} - {{profesor.apellido}} - {{profesor.email}} - {{profesor.profesion}}
-
-{% endfor %}
 
 {% endblock  %}

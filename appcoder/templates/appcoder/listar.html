@@ -12,19 +12,23 @@
 
     {% for curso in cursos %}
 
-        <p> Nombre:{{curso.nombre}} | Comision:{{curso.comision}} </p>
+        <p> Nombre:{{curso.nombre}} | Comision:{{curso.comision}} </p>  
 
-        <a href="{% url 'ActualizarCursos' curso.pk %}"> Actualizar </a>
+
         <a href="{% url 'VerCursos' curso.pk %}"> Ver </a>
-        <a href="{% url 'BorrarCursos' curso.pk %}"> Borrar </a>
 
+        {%if request.user.is_superuser %}
+            <a href="{% url 'ActualizarCursos' curso.pk %}"> Actualizar </a>
+        
+            <a href="{% url 'BorrarCursos' curso.pk %}"> Borrar </a>
+        {%endif%}
     {% endfor %}
 
 {% endblock main%}
 
 <button>
 
-    <a href= "{% url 'cursos'  %}"> Volver </a>
+    <a href= "{% url 'inicio'  %}"> Volver </a>
 
 </button>
 

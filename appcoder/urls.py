@@ -22,6 +22,7 @@ urlpatterns = [path("", views.inicio, name="inicio"),
     path("actualizar/<pk>", views.CursoUpdateView.as_view(), name="ActualizarCursos"),
     path("borrar/<pk>", views.CursoDeleteView.as_view(), name="BorrarCursos"),
     path("ver/<pk>", views.CursoDetailView.as_view(), name="VerCursos"),
+    path("about/", views.about, name="About"),
     
     
 ]

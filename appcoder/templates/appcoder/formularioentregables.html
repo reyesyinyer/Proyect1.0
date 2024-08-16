@@ -1,6 +1,4 @@
-{% extends "appcoder/base.html"%}
 
-{% block titulo %} Coderhouse | Formulario Entregables {% endblock %}
 
 {% if formulario.errors %}
 
@@ -18,5 +16,9 @@
     </table>
 
         <input type="submit" value="Enviar">
-    
+        <button>
+
+            <a href= "{% url 'inicio'  %}"> Volver </a>
+        
+        </button>
 </form>

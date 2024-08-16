@@ -10,41 +10,50 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin 
+from django.contrib.auth.decorators import login_required
 
 import requests
 
 
 
-
+@login_required
 def inicio(request):
     return render(request, "appcoder/inicio.html")
 
+@login_required
+def about(request):
+    return render(request, "appcoder/about.html")
+
+
+@login_required
 def cursos(request):
     
     cursos = Curso.objects.all()
     
     return render(request, "appcoder/cursos.html", {"cursos":cursos})
 
+@login_required
 def estudiantes(request):
     
     estudiantes = Estudiante.objects.all()
     
     return render(request, "appcoder/estudiantes.html", {"estudiantes":estudiantes})
 
+@login_required
 def profesores(request):
     
     profesores = Profesor.objects.all()
     
     return render(request, "appcoder/profesores.html", {"profesores":profesores})
 
-
+@login_required
 def entregables(request):
     
     entregables = Entregable.objects.all()
     
     return render(request, "appcoder/entregables.html", {"entregables":entregables})
 
-
+@login_required
 def formularioestudiantes(request):
     if request.method == "POST":
         formulario = MiFormularioEstudiantes(request.POST)
@@ -60,6 +69,7 @@ def formularioestudiantes(request):
         
     return render(request, "appcoder/formularioestudiantes.html", {"formulario": formulario})
 
+@login_required
 def formulariocurso(request):
     if request.method == "POST":
         formulario = MiFormulario(request.POST)
@@ -75,6 +85,7 @@ def formulariocurso(request):
         
     return render(request, "appcoder/formulariocurso.html", {"formulario": formulario}) 
 
+@login_required
 def formularioprofesores(request):
     if request.method == 'POST':
         formulario = MiFormularioProfesores(request.POST)
@@ -91,12 +102,14 @@ def formularioprofesores(request):
         
     return render(request, "appcoder/formularioprofesores.html", {"formulario": formulario})
 
+@login_required
 def leerProfesores(request):
     profesores = Profesor.objects.all()
     contexto = {"profesores":profesores}
     
     return render(request, "appcoder/leerprofesores.html", contexto)
 
+@login_required
 def editarProfesor(request, profesor_id):
     
     profesor = Profesor.objects.get(id =profesor_id)
@@ -124,6 +137,7 @@ def editarProfesor(request, profesor_id):
         
     return render(request, "appcoder/editarProfesor.html", {"miFormulario":miFormulario, "profesor_id":profesor_id})
 
+@login_required
 def eliminarProfesor(request, profesor_nombre):
     
     profesor = Profesor.objects.get(nombre=profesor_nombre)
@@ -136,6 +150,7 @@ def eliminarProfesor(request, profesor_nombre):
     
     return render(request, "appcoder/leerprofesores.html", contexto)
 
+@login_required
 def formularioentregables(request):
     if request.method == "POST":
         formulario = MiFormularioEntregables(request.POST)
@@ -151,9 +166,11 @@ def formularioentregables(request):
         
     return render(request, "appcoder/formularioentregables.html", {"formulario": formulario})
 
+@login_required
 def buscarcomision(request):
     return render(request, "appcoder/buscarcomision.html")
 
+@login_required
 def buscar(request):
     
     if request.GET["comision"]:
@@ -175,19 +192,19 @@ class CursoListView(LoginRequiredMixin, ListView):
     context_object_name = "cursos"
     template_name = "appcoder/listar.html"
     
-class CursoCreateView(CreateView):
+class CursoCreateView(LoginRequiredMixin, CreateView):
     model = Curso
     template_name = "appcoder/crear.html"
     success_url = reverse_lazy('ListarCursos')
     fields = ['nombre','comision']
     
-class CursoUpdateView(UpdateView):
+class CursoUpdateView(LoginRequiredMixin, UpdateView):
     model = Curso
     template_name = "appcoder/actualizar.html"
     success_url = reverse_lazy('ListarCursos')
     fields = ['nombre','comision']
     
-class CursoDeleteView(DeleteView):
+class CursoDeleteView(LoginRequiredMixin, DeleteView):
     model = Curso
     template_name = "appcoder/borrar.html"
     success_url = reverse_lazy('ListarCursos')

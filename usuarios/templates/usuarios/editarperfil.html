@@ -1,0 +1,38 @@
+{% extends "appcoder/base.html"%}
+
+{% load static %}
+
+{% block contenidoQueCambia %}
+
+<h1>Login de la WEB</h1>
+
+{% block title %} Editar Perfil {% endblock title %}
+
+{% block main %}
+
+    <div class="d-flex justify-content-center">
+
+        <div class="d-flex flex-column">
+
+            
+
+            <form action="" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <table>
+                    {{ form.as_table }}
+                </table>
+                <a class= "btn btn-primary" href= "{% url 'EditarPassword' %}" > Cambiar Password </a>
+                <input type="submit" value="Actualizar">
+                <button>
+
+                    <a href= "{% url 'inicio'  %}"> Volver </a>
+                
+                </button>
+            </form>
+    </div>
+
+{% endblock main %}
+
+
+
+{% endblock contenidoQueCambia %}
