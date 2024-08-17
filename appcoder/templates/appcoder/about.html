@@ -4,12 +4,24 @@
 
 {% block contenidoQueCambia %}
 
-{% block titulo %} About {% endblock %}
+{% block titulo %}  {% endblock %}
 
-{%block main%}
+{% block main %}
+<div class="about-container">
+    <table style="width: 100%; border-collapse: collapse; background-color: #003366; color: #ffffff; padding: 20px;">
+        <tr>
+            <td style="padding: 20px; text-align: center;">
+                <h1 style="font-size: 2.5em; margin-bottom: 20px;">Sobre Mí</h1>
+                <p style="font-size: 1.2em; line-height: 1.6;">
+                    Ingeniero en sistemas, especialista en fraude electrónico y fraude financiero,
+                    intentando darle un giro a su carrera y entregando lo mejor de sí en cada cosa que hace o incursiona,
+                    muchas bendiciones en su camino, al que esté leyendo esto.
+                </p>
+            </td>
+        </tr>
+    </table>
+</div>
+{% endblock main %}
 
-Este es el about
-
-{%endblock main%}
 
 {% endblock contenidoQueCambia %}
